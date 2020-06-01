@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout headerColor="white" headerBg="secondary">
-      <SEO title="Keep your people safe from coronavirus" />
+      <SEO title="Monitor your building for coronavirus" />
 
       {/* Hero  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
       <Box
@@ -39,9 +39,9 @@ const IndexPage = ({ data }) => {
             Monitor your building for coronavirus
           </Heading>
           <Heading as="h2" variant="indexSubtitle" px={6}>
-            Clearspace is an subscription service to monitor offices,
-            schools, hotels, nursing homes, and other shared spaces for the
-            presence of coronavirus.
+            Clearspace is an subscription service to monitor offices, schools,
+            hotels, nursing homes, and other shared spaces for the presence of
+            coronavirus.
           </Heading>
         </Flex>
         <Image
@@ -74,10 +74,10 @@ const IndexPage = ({ data }) => {
                 Easy to get started
               </Heading>
               <Text variant="indexSectionBody">
-                You decide which spaces in your building to monitor.
-                Track only your reception, or include cafeteria and
-                bathrooms. Each space is tested separately, to help identify who
-                may be affected if a virus is detected.
+                You decide which spaces in your building to monitor. Track only
+                your reception, or include cafeteria and bathrooms. Each space
+                is tested separately, to help identify who may be affected if a
+                virus is detected.
               </Text>
             </Box>
             <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
@@ -130,7 +130,9 @@ const IndexPage = ({ data }) => {
                 Shipments are on us
               </Heading>
               <Text variant="indexSectionBody">
-                Each kit is pre-labeled for a fast and easy return. You can monitor the status of the shipment on our website or in our mobile app.
+                Each kit is pre-labeled for a fast and easy return. You can
+                monitor the status of the shipment on our website or in our
+                mobile app.
               </Text>
             </Box>
             <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
@@ -157,8 +159,8 @@ const IndexPage = ({ data }) => {
               </Heading>
               <Text variant="indexSectionBody">
                 We will notify you of the results in less than 24 hours from the
-                reception of your kit. You'll be able to access your current
-                and past results on our website and mobile app.
+                reception of your kit. You'll be able to access your current and
+                past results on our website and mobile app.
               </Text>
             </Box>
           </Flex>
@@ -211,8 +213,8 @@ const IndexPage = ({ data }) => {
             {/* <Text sx={{ fontWeight: "bold", fontSize: 4 }}>Request access</Text> */}
             <Text variant="indexSectionTitle">Request access</Text>
             <Text variant="indexSectionBody">
-              We're starting our pilot studies with select partners. Get in touch
-               if you are interested in participating.
+              We're starting our pilot studies with select partners. Get in
+              touch if you are interested in participating.
             </Text>
           </Box>
         </Flex>
