@@ -16,6 +16,17 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Clearspace`,
+        start_url: `/`,
+        background_color: `#FFF`,
+        theme_color: `#38B2AC`, // tailwind teal 800
+        display: `minimal-ui`,
+        icon: `assets/icon.svg`,
+      },
+    },
     // `gatsby-plugin-offline`,
   ],
-}
+};
