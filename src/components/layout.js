@@ -1,8 +1,10 @@
-import { graphql, useStaticQuery } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
-import { Footer } from "./footer"
-import { Header } from "./header"
+/** @jsx jsx */
+import { graphql, useStaticQuery } from "gatsby";
+import PropTypes from "prop-types";
+import { Fragment } from "react";
+import { jsx } from "theme-ui";
+import { Footer } from "./footer";
+import { Header } from "./header";
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -17,24 +19,28 @@ export const Layout = ({ children, headerColor, headerBg }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
-    <>
-      <Header
-        siteTitle={siteMetadata.title}
-        color={headerColor}
-        bg={headerBg}
-      />
+    <Fragment>
+      <header>
+        <Header
+          siteTitle={siteMetadata.title}
+          color={headerColor}
+          bg={headerBg}
+        />
+      </header>
       <main>{children}</main>
-      <Footer />
-    </>
-  )
-}
+      <footer>
+        <Footer />
+      </footer>
+    </Fragment>
+  );
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   headerColor: PropTypes.string,
-}
+};

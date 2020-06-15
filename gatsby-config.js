@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Clearspace`,
     description: `Monitor your building for coronavirus`,
+    sentence1: `Clearspace lets clients like nursing homes, hotels, stores, and schools monitor their spaces for coronavirus.`,
+    sentence2: `You swab door knobs, elevator buttons, and toilet seats, and we tell you if traces of the virus are present.`,
     author: `@clearspace`,
   },
   plugins: [
