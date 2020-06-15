@@ -1,0 +1,19 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  },
+  "[javascriptreact]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  },
+  "[typescript]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  },
+  "[typescriptreact]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+  },
+}
