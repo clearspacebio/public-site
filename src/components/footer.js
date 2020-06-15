@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import { graphql, Link, useStaticQuery } from "gatsby"
-import { Facebook, GitHub, Linkedin, Twitter } from "react-feather"
-import { Flex, jsx, Text, useThemeUI } from "theme-ui"
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { Fragment } from "react";
+import { Facebook, GitHub, Linkedin, Mail, Twitter } from "react-feather";
+import { Flex, Grid, jsx, Text } from "theme-ui";
+import { LogoType } from "./logo";
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 export const Footer = () => {
-  const { theme } = useThemeUI()
-
   const {
     site: { siteMetadata },
   } = useStaticQuery(graphql`
@@ -15,154 +15,110 @@ export const Footer = () => {
       site {
         siteMetadata {
           title
+          sentence1
         }
       }
     }
-  `)
+  `);
 
   return (
-    <footer
-      sx={{
-        variant: "styles.footer",
-      }}
-    >
-      <Flex
+    <Fragment>
+      <Grid
+        columns={[1, 1, `2fr 1fr 1fr`]}
         sx={{
-          width: theme.breakpoints,
+          maxWidth: (theme) => theme.breakpoints[theme.breakpoints.length - 1],
           mx: "auto",
+          p: [3, 4, 2],
         }}
       >
         {/* Logo & social links - - - - - - - - - - - - - - - - - - - - - - */}
-        <Flex sx={{ flexDirection: "column", width: "50%", pr: 6 ,}}>
+        <Flex sx={{ flexDirection: "column" }}>
           <Link
             to="/"
             title={siteMetadata.title}
             sx={{ display: "flex", pb: 4 }}
           >
-            <svg
-              sx={{
-                display: "inline",
-                height: "48px",
-                mr: 3,
-                fill: "none",
-                fillRule: "nonzero",
-                stroke: "primary",
-                strokeWidth: "12px",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              viewBox="0 0 128 128"
-            >
-              <path d="M116,51.939C116,49.455 114.846,47.113 112.878,45.598C104.147,38.882 79.434,19.872 68.878,11.752C66.002,9.54 61.998,9.54 59.122,11.752C48.566,19.872 23.853,38.882 15.122,45.598C13.154,47.113 12,49.455 12,51.939C12,63.352 12,96.6 12,112C12,114.122 12.843,116.157 14.343,117.657C15.843,119.157 17.878,120 20,120C39.372,120 88.628,120 108,120C110.122,120 112.157,119.157 113.657,117.657C115.157,116.157 116,114.122 116,112C116,96.6 116,63.352 116,51.939Z" />
-              <path d="M36,76L56,96L92,60" />
-            </svg>
-            <span
-              sx={{
-                color: "primary",
-                fontFamily: "logo",
-                fontWeight: "semibold",
-                fontSize: 5,
-                verticalAlign: "middle",
-              }}
-            >
-              {siteMetadata.title}
-            </span>
+            <LogoType sx={{ color: "primary" }} />
           </Link>
-          <Text pb={4}>
-            Clearspace is an subscription service that helps monitor offices,
-            schools, hotels, nursing homes, and other shared spaces for the presence of coronavirus.
-          </Text>
+          <Text pb={4}>{siteMetadata.sentence1}</Text>
           <Flex color="primary">
-            <a sx={{ mr: 3 }} href="#">
+            <a sx={{ mr: 3 }} href="mailto:info@clearspace.bio">
+              <Mail />
+            </a>
+            <a sx={{ mr: 3 }} href="https://linkedin.com/company/clearspacebio">
               <Linkedin />
             </a>
-            <a sx={{ mr: 3 }} href="#">
+            <a sx={{ mr: 3 }} href="https://github.com/clearspacebio">
               <GitHub />
             </a>
-            <a sx={{ mr: 3 }} href="#">
-              <Twitter />
-            </a>
-            <a sx={{ mr: 3 }} href="#">
+            <a sx={{ mr: 3 }} href="https://facebook.com/clearspacebio">
               <Facebook />
+            </a>
+            <a sx={{ mr: 3 }} href="https://twitter.com/clearspacebio">
+              <Twitter />
             </a>
           </Flex>
         </Flex>
-        {/* About us  - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-        <Flex
-          sx={{
-            flexDirection: "column",
-            flex: 1,
-            pt: 3,
-          }}
-        >
-          <Text pb={2} variant="footerHeading">
-            About us
-          </Text>
-          <div
-            sx={{
-              display: "grid",
-              gridTemplateRows: "repeat(5, 1fr)",
-            }}
-          >
-            <Link to="/">Home</Link>
-            <Link sx={{ variant: "styles.footerLink" }} to="/our-team">
-              Our team
-            </Link>
-            <Link
-              sx={{ variant: "styles.footerLink", pb: 1 }}
-              to="/privacy-policy"
-            >
-              Privacy policy
-            </Link>
-            <Link
-              sx={{ variant: "styles.footerLink", pb: 1 }}
-              to="/terms-of-service"
-            >
-              Terms of service
-            </Link>
-            <Link sx={{ variant: "styles.footerLink", pb: 1 }} to="/contact-us">
-              Contact us
-            </Link>
-          </div>
-        </Flex>
         {/* Solutions - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-        <Flex
-          sx={{
-            flexDirection: "column",
-            flex: 1,
-            pt: 3,
-          }}
-        >
+        <Flex sx={{ flexDirection: "column", pt: 3, display: "none" }}>
           <Text pb={2} variant="footerHeading">
             Our solutions
           </Text>
-          <div
-            sx={{
-              display: "grid",
-              gridTemplateRows: "repeat(5, 1fr)",
-            }}
-          >
-            <Link sx={{ variant: "styles.footerLink", pb: 1 }} to="#">
-              For offices
+          <Grid gap={2}>
+            <Link pb={1} to="#">
+              Care facilities
             </Link>
-            <Link sx={{ variant: "styles.footerLink", pb: 1 }} to="#">
-              For schools
+            <Link pb={1} to="#">
+              Hotels
             </Link>
-            <Link sx={{ variant: "styles.footerLink", pb: 1 }} to="#">
-              For nursing homes
+            <Link pb={1} to="#">
+              Schools
             </Link>
-          </div>
+            <Link pb={1} to="#">
+              Offices
+            </Link>
+          </Grid>
         </Flex>
-      </Flex>
+        {/* About us  - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
+        <Flex sx={{ flexDirection: "column", pt: 3, display: "none" }}>
+          <Text pb={2} variant="footerHeading">
+            About us
+          </Text>
+          <Grid gap={2}>
+            <Link pb={1} to="/">
+              Home
+            </Link>
+            <Link pb={1} to="/our-team">
+              Our team
+            </Link>
+            <Link pb={1} to="/privacy-policy">
+              Privacy policy
+            </Link>
+            <Link pb={1} to="/terms-of-service">
+              Terms of service
+            </Link>
+            <Link pb={1} to="/contact-us">
+              Contact us
+            </Link>
+          </Grid>
+        </Flex>
+      </Grid>
       {/* Copyright - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Text variant="footerCopyright">
+      <Text
+        sx={{
+          color: "muted",
+          textAlign: "center",
+          fontSize: 0,
+          fontWeight: "semibold",
+          mt: [4, 4, 6],
+          mb: 4,
+        }}
+      >
         &copy;2020 Clearspace, Inc. All rights reserved.
       </Text>
-    </footer>
+    </Fragment>
   );
-}
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

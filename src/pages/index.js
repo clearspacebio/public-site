@@ -1,26 +1,45 @@
 /** @jsx jsx */
 import { graphql } from "gatsby";
 import Image from "gatsby-image";
-import { Box, Button, Donut, Flex, Heading, jsx, Text, useThemeUI } from "theme-ui";
+import { CheckCircle, Package } from "react-feather";
+import {
+  Box,
+  Button,
+  Donut,
+  Flex,
+  Grid,
+  Heading,
+  jsx,
+  Text,
+  useThemeUI,
+} from "theme-ui";
 import { Layout } from "../components/layout";
 import { SEO } from "../components/seo";
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const IndexPage = ({ data }) => {
-  const { theme } = useThemeUI()
+  const { theme } = useThemeUI();
 
-  const { image } = data
+  const {
+    site: {
+      siteMetadata: { description, sentence1, sentence2 },
+    },
+    image,
+  } = data;
 
   return (
     <Layout headerColor="white" headerBg="secondary">
-      <SEO title="Monitor your building for coronavirus" />
+      <SEO title={description} />
 
       {/* Hero  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
       <Box
         sx={{
-          pt: 6,
-          background: `linear-gradient(${theme.colors.teal[4]},${theme.colors.green[4]})`,
-          height: "100vh",
+          minHeight: "100vh",
+          background: ({ colors }) =>
+            `linear-gradient(${colors.teal[4]},${colors.green[4]})`,
+          pt: [6, 7, 7],
+          px: 2,
           textAlign: "center",
           color: "white",
           overflow: "hidden",
@@ -30,18 +49,16 @@ const IndexPage = ({ data }) => {
           sx={{
             flexDirection: "column",
             justifyContent: "space-between",
-            width: theme.breakpoints,
+            maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
             mx: "auto",
             overflow: "hidden",
           }}
         >
-          <Heading as="h1" variant="indexTitle">
-            Monitor your building for coronavirus
+          <Heading as="h1" variant="headline1" mx={[2, 4, 6]} my={[2, 3, 4]}>
+            {sentence1}
           </Heading>
-          <Heading as="h2" variant="indexSubtitle" px={6}>
-            Clearspace is an subscription service to monitor offices, schools,
-            hotels, nursing homes, and other shared spaces for the presence of
-            coronavirus.
+          <Heading as="h2" variant="headline2" mx={[2, 4, 6]} my={[2, 3, 4]}>
+            {sentence2}
           </Heading>
         </Flex>
         <Image
@@ -58,157 +75,202 @@ const IndexPage = ({ data }) => {
       </Box>
 
       {/* Section 1 - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Flex
+      <Box
         sx={{
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "75vh",
+          background: ({ colors }) =>
+            `linear-gradient(-45deg, ${colors.yellow[3]}, ${colors.yellow[5]})`,
           color: "white",
-          background: `linear-gradient(-45deg, ${theme.colors.yellow[3]},${theme.colors.yellow[5]})`,
         }}
       >
-        <Box sx={{ width: theme.breakpoints, mx: "auto" }}>
-          <Flex sx={{ alignItems: "center", mx: -4 }}>
-            <Box sx={{ flex: 1, px: 4 }}>
-              <Heading as="h3" variant="indexSectionTitle" mb={3}>
-                Easy to get started
-              </Heading>
-              <Text variant="indexSectionBody">
-                You decide which spaces in your building to monitor. Track only
-                your reception, or include cafeteria and bathrooms. Each space
-                is tested separately, to help identify who may be affected if a
-                virus is detected.
-              </Text>
-            </Box>
-            <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
-          </Flex>
-        </Box>
-      </Flex>
+        <Grid
+          columns={[null, null, 2]}
+          sx={{
+            maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
+            minHeight: "75vh",
+            mx: "auto",
+            p: [3, 4, 5],
+            alignItems: "center",
+          }}
+        >
+          <Box>
+            <Heading as="h3" variant="indexSectionTitle" mb={3}>
+              Easy to get started
+            </Heading>
+            <Text variant="indexSectionBody">
+              You decide which spaces to monitor: test only your reception, or
+              include cafeteria and bathrooms. Each space is tested separately,
+              to help identify who may be affected if a virus is found.
+            </Text>
+          </Box>
+          {/* <Donut
+            sx={{ flex: 1, px: 4, color: "white", mx: "auto" }}
+            value={1}
+          /> */}
+          <CheckCircle size={64} sx={{ mx: "auto" }} />
+        </Grid>
+      </Box>
 
       {/* Section 2 - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Flex
+      <Box
         sx={{
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "75vh",
+          background: ({ colors }) =>
+            `linear-gradient(-45deg, ${colors.teal[3]},${colors.teal[5]})`,
           color: "white",
-          background: `linear-gradient(45deg, ${theme.colors.teal[3]},${theme.colors.teal[5]})`,
         }}
       >
-        <Box sx={{ width: theme.breakpoints, mx: "auto" }}>
-          <Flex sx={{ alignItems: "center", mx: -4 }}>
-            <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
-            <Box sx={{ flex: 1, px: 4 }}>
-              <Heading as="h3" variant="indexSectionTitle" mb={3}>
-                No overheads
-              </Heading>
-              <Text variant="indexSectionBody">
-                Our solution doesn't require specialized personel. You or your
-                cleaning crew can easily administer the test. Instructions
-                included in the kit you'll receive by mail make sure every test
-                produces consistent results.
-              </Text>
-            </Box>
-          </Flex>
-        </Box>
-      </Flex>
+        <Grid
+          columns={[null, null, 2]}
+          sx={{
+            maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
+            minHeight: "75vh",
+            mx: "auto",
+            p: [3, 4, 5],
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ order: [null, null, 1] }}>
+            <Heading as="h3" variant="indexSectionTitle" mb={3}>
+              Simple to use
+            </Heading>
+            <Text variant="indexSectionBody">
+              You or your staff can collect the samples without special training
+              or equipment. Each kit includes clear instructions and everything
+              you need to get reliable results.
+            </Text>
+          </Box>
+          {/* <Donut
+            sx={{ flex: 1, px: 4, color: "white", mx: "auto" }}
+            value={1}
+          /> */}
+          <Package size={64} sx={{ mx: "auto" }} />
+        </Grid>
+      </Box>
 
       {/* Section 3 - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Flex
+      <Box
         sx={{
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "75vh",
+          background: ({ colors }) =>
+            `linear-gradient(-45deg, ${colors.blue[3]},${colors.blue[5]})`,
           color: "white",
-          background: `linear-gradient(-45deg, ${theme.colors.blue[3]},${theme.colors.blue[5]})`,
         }}
       >
-        <Box sx={{ width: theme.breakpoints, mx: "auto" }}>
-          <Flex sx={{ alignItems: "center", mx: -4 }}>
-            <Box sx={{ flex: 1, px: 4 }}>
-              <Heading as="h3" variant="indexSectionTitle" mb={3}>
-                Shipments are on us
-              </Heading>
-              <Text variant="indexSectionBody">
-                Each kit is pre-labeled for a fast and easy return. You can
-                monitor the status of the shipment on our website or in our
-                mobile app.
-              </Text>
-            </Box>
-            <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
-          </Flex>
-        </Box>
-      </Flex>
+        <Grid
+          columns={[null, null, 2]}
+          sx={{
+            maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
+            minHeight: "75vh",
+            mx: "auto",
+            p: [3, 4, 5],
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{}}>
+            <Heading as="h3" variant="indexSectionTitle" mb={3}>
+              Fast results
+            </Heading>
+            <Text variant="indexSectionBody">
+              We're developing different solutions that adapt to your needs.
+              Ship the samples to our lab and receive results in 24 to 48 hours,
+              or run the analysis yourself on site in 1 to 2 hours.
+            </Text>
+          </Box>
+          <Donut
+            sx={{ flex: 1, px: 4, color: "white", mx: "auto" }}
+            value={1}
+          />
+        </Grid>
+      </Box>
 
       {/* Section 4 - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Flex
+      <Box
         sx={{
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "75vh",
+          background: ({ colors }) =>
+            `linear-gradient(-45deg, ${colors.green[3]},${colors.green[5]})`,
           color: "white",
-          background: `linear-gradient(45deg, ${theme.colors.green[3]},${theme.colors.green[5]})`,
         }}
       >
-        <Box sx={{ width: theme.breakpoints, mx: "auto" }}>
-          <Flex sx={{ alignItems: "center", mx: -4 }}>
-            <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
-            <Box sx={{ flex: 1, px: 4 }}>
-              <Heading as="h3" variant="indexSectionTitle" mb={3}>
-                Results in 24 hours
-              </Heading>
-              <Text variant="indexSectionBody">
-                We will notify you of the results in less than 24 hours from the
-                reception of your kit. You'll be able to access your current and
-                past results on our website and mobile app.
-              </Text>
-            </Box>
-          </Flex>
-        </Box>
-      </Flex>
+        <Grid
+          columns={[null, null, 2]}
+          sx={{
+            maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
+            minHeight: "75vh",
+            mx: "auto",
+            p: [3, 4, 5],
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ order: [null, null, 1] }}>
+            <Heading as="h3" variant="indexSectionTitle" mb={3}>
+              Operate with confidence
+            </Heading>
+            <Text variant="indexSectionBody">
+              If traces of the virus are found, you'll have time to make your
+              space safer. Our test help you make sure that the people in your
+              building are safe.
+            </Text>
+          </Box>
+          <Donut
+            sx={{ flex: 1, px: 4, color: "white", mx: "auto" }}
+            value={1}
+          />
+        </Grid>
+      </Box>
 
       {/* Section 5 - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Flex
+      <Box
         sx={{
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "75vh",
+          background: ({ colors }) =>
+            `linear-gradient(-45deg, ${colors.orange[3]},${colors.orange[5]})`,
           color: "white",
-          background: `linear-gradient(-45deg, ${theme.colors.orange[3]},${theme.colors.orange[5]})`,
         }}
       >
-        <Box sx={{ width: theme.breakpoints, mx: "auto" }}>
-          <Flex sx={{ alignItems: "center", mx: -4 }}>
-            <Box sx={{ flex: 1, px: 4 }}>
-              <Heading as="h3" variant="indexSectionTitle" mb={3}>
-                We're here to help
-              </Heading>
-              <Text variant="indexSectionBody">
-                If coronavirus is detected in your sample, we will contact you
-                and remian available to provide assistance and education to best
-                deal with the situation.
-              </Text>
-            </Box>
-            <Donut sx={{ flex: 1, px: 4, color: "white" }} value={1} />
-          </Flex>
-        </Box>
-      </Flex>
+        <Grid
+          columns={[null, null, 2]}
+          sx={{
+            maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
+            minHeight: "75vh",
+            mx: "auto",
+            p: [3, 4, 5],
+            alignItems: "center",
+          }}
+        >
+          <Box>
+            <Heading as="h3" variant="indexSectionTitle" mb={3}>
+              Promote your business
+            </Heading>
+            <Text variant="indexSectionBody">
+              Let your customers, residents, and guests know that you are taking
+              additional precautions by showing a "Clearspace certified" sign.
+              If coronavirus is detected in your sample, we will contact you and
+              remian available to provide assistance and education to best deal
+              with the situation.
+            </Text>
+          </Box>
+          <Donut
+            sx={{ flex: 1, px: 4, color: "white", mx: "auto" }}
+            value={1}
+          />
+        </Grid>
+      </Box>
 
       {/* Upsell  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */}
-      <Flex
+      <Grid
+        columns={[1, 2, 2]}
+        gap={[4, 0, 0]}
         sx={{
-          alignItems: "center",
-          width: theme.breakpoints,
-          mx: "auto",
+          maxWidth: ({ breakpoints }) => breakpoints[breakpoints.length - 1],
+          mx: [3, 4, "auto"],
           my: 6,
-          px: 5,
+          px: [3, 4, 6],
           py: 5,
-          background: `linear-gradient(${theme.colors.teal[4]},${theme.colors.green[4]})`,
+          alignItems: "center",
+          background: ({ colors }) =>
+            `linear-gradient(${colors.teal[4]},${colors.green[4]})`,
           borderRadius: "default",
           boxShadow: "2xl",
         }}
       >
-        <Flex sx={{ flexDirection: "column", width: "50%" }}>
+        <Flex sx={{ flexDirection: "column" }}>
           <Box sx={{ color: "white" }}>
             {/* <Text sx={{ fontWeight: "bold", fontSize: 4 }}>Request access</Text> */}
             <Text variant="indexSectionTitle">Request access</Text>
@@ -218,22 +280,23 @@ const IndexPage = ({ data }) => {
             </Text>
           </Box>
         </Flex>
-        <Box mx="auto"></Box>
+        {/* <Box mx="auto"></Box> */}
         <a
           href="http://access.clearspace.bio"
           target={"_blank"}
           rel="noreferrer"
+          sx={{ display: "flex", justifyContent: "center" }}
         >
           <Button variant="elevated">Sign up for the pilot study</Button>
         </a>
-      </Flex>
+      </Grid>
     </Layout>
   );
-}
+};
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-export default IndexPage
+export default IndexPage;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -242,6 +305,9 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        sentence1
+        sentence2
       }
     }
     image: file(absolutePath: { regex: "/assets/dashboard.png/" }) {
@@ -252,4 +318,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
